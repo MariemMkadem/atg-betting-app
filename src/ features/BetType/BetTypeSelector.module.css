@@ -1,0 +1,15 @@
+.selector {
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.betType {
+  cursor: pointer;
+  padding: 5px;
+  transition: background 0.3s;
+}
+
+.betType:hover {
+  background: #f0f0f0;
+}
