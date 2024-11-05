@@ -1,19 +1,15 @@
 import React from "react";
-import styles from "./BetTypeSelector.module.css";
+import { BetTypeSelectorProps } from "../../types/bet-type";
+import styles from "./bet-type-selector.module.css";
 
-interface BetTypeSelectorProps {
-  betTypes: string[];
-  onSelect: (betType: string) => void;
-}
-
-const BetTypeSelector: React.FC<BetTypeSelectorProps> = ({
+export const BetTypeSelector: React.FC<BetTypeSelectorProps> = ({
   betTypes,
   onSelect,
 }) => {
   return (
     <div className={styles.selector}>
-      <h2>Select Bet Type</h2>
-      <ul>
+      <h2 className={styles.title}>Select Your Bet Type</h2>
+      <ul className={styles.betTypeList}>
         {betTypes.map((betType) => (
           <li
             key={betType}
@@ -27,5 +23,3 @@ const BetTypeSelector: React.FC<BetTypeSelectorProps> = ({
     </div>
   );
 };
-
-export default BetTypeSelector;
