@@ -73,3 +73,11 @@ This project uses ESLint to ensure code quality and consistency. Linting helps c
    ```bash
        npm run lint:fix
    ```
+
+## Running Tests
+
+To run the tests for this application, use the following command:
+
+```bash
+npm test
+```
