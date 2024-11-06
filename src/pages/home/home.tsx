@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { getBetTypeResults } from "../../services/api";
+import { getBetTypeResults, getGameDetails } from "../../services/api";
 import { BetTypeSelector } from "../../features/bet-type";
 import { RaceList } from "../../features/race";
-import { HorseDetails } from "../../features/horse";
-import { Race } from "../../types/race";
+import { Product } from "../../types/product";
+import { Game } from "../../types/game";
+
 import styles from "./home.module.css";
 
 const Home: React.FC = () => {
   const [betType, setBetType] = useState<string>("");
-  const [races, setRaces] = useState<Race[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [gameDetails, setGameDetails] = useState<Game | null>(null);
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(
+    null
+  );
   const [error, setError] = useState<string | null>(null);
 
   const betTypes = ["V75", "V86", "GS75"];
-
-  console.log("racesssss", races);
 
   useEffect(() => {
     const fetchResults = async () => {
       if (!betType) return;
       try {
         const { data } = await getBetTypeResults(betType);
-        setRaces(data.results);
+        setProducts(data.results);
         setError(null);
       } catch (error) {
         setError("Failed to fetch race results. Please try again.");
@@ -29,18 +32,20 @@ const Home: React.FC = () => {
     fetchResults();
   }, [betType]);
 
-  const renderHorseDetails = (race: Race) => (
-    <>
-      <h2>Race Number: {race.raceNumber}</h2>
-      {Array.isArray(race.horses) && race.horses.length > 0 ? (
-        race.horses.map((horse) => (
-          <HorseDetails key={horse.startNumber} horse={horse} />
-        ))
-      ) : (
-        <p>No horses available for this race.</p>
-      )}
-    </>
-  );
+  const handleProductClick = async (id: string) => {
+    if (selectedProductId === id) {
+      setSelectedProductId(null);
+      setGameDetails(null);
+    } else {
+      try {
+        const { data } = await getGameDetails(id);
+        setGameDetails(data);
+        setSelectedProductId(id);
+      } catch (error) {
+        setError("Failed to fetch game details. Please try again.");
+      }
+    }
+  };
 
   return (
     <div className={styles.homeContainer}>
@@ -54,12 +59,43 @@ const Home: React.FC = () => {
         </section>
         <section className={styles.raceSection}>
           {error && <div className={styles.error}>{error}</div>}
-          <RaceList races={races} />
-          {races.map((race) => (
-            <div key={race.raceNumber} className={styles.raceCard}>
-              {renderHorseDetails(race)}
-            </div>
-          ))}
+
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>Track</th>
+                <th>Start Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product) => {
+                return (
+                  <React.Fragment key={product.id}>
+                    <tr
+                      className={
+                        selectedProductId === product.id ? styles.selected : ""
+                      }
+                      onClick={() => handleProductClick(product.id)}
+                    >
+                      <td>{product.tracks[0].name}</td>
+                      <td>{new Date(product.startTime).toLocaleString()}</td>
+                    </tr>
+
+                    {selectedProductId === product.id && gameDetails && (
+                      <tr>
+                        <td colSpan={2}>
+                          <RaceList
+                            races={gameDetails.races}
+                            trackId={product.tracks[0].id}
+                          />
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </tbody>
+          </table>
         </section>
       </main>
     </div>
