@@ -1,8 +1,6 @@
-// src/components/RaceList.tsx
-
 import React, { useState } from "react";
 import { HorseDetails } from "../../features/horse";
-import { Race } from "../../types/game";
+import { Race } from "../../types";
 import formatDate from "../../helpers/formatDate";
 import styles from "./race-list.module.css";
 

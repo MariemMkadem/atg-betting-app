@@ -1,7 +1,10 @@
 import React from "react";
-import { BetTypeSelectorProps } from "../../types/bet-type";
 import styles from "./bet-type-selector.module.css";
 
+export interface BetTypeSelectorProps {
+  betTypes: string[];
+  onSelect: (betType: string) => void;
+}
 export const BetTypeSelector: React.FC<BetTypeSelectorProps> = ({
   betTypes,
   onSelect,

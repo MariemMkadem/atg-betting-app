@@ -1,7 +1,5 @@
-// src/components/HorseDetails.tsx
-
 import React from "react";
-import { Start } from "../../types/game";
+import { Start } from "../../types";
 
 interface HorseDetailsProps {
   starts: Start[];
