@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { HorseDetails } from "../../features/horse";
 import { Race } from "../../types/game";
+import formatDate from "../../helpers/formatDate";
 import styles from "./race-list.module.css";
 
 interface RaceListProps {
@@ -37,7 +38,7 @@ export const RaceList: React.FC<RaceListProps> = ({ races, trackId }) => {
             <tr onClick={() => handleRowClick(race.id)}>
               <td>{race.number}</td>
               <td>{race.name}</td>
-              <td>{new Date(race.startTime).toLocaleString()}</td>
+              <td>{formatDate(race.startTime)}</td>
             </tr>
 
             {selectedRaceId === race.id && (

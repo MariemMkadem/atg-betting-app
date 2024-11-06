@@ -4,6 +4,7 @@ import { BetTypeSelector } from "../../features/bet-type";
 import { RaceList } from "../../features/race";
 import { Product } from "../../types/product";
 import { Game } from "../../types/game";
+import formatDate from "../../helpers/formatDate";
 
 import styles from "./home.module.css";
 
@@ -78,7 +79,7 @@ const Home: React.FC = () => {
                       onClick={() => handleProductClick(product.id)}
                     >
                       <td>{product.tracks[0].name}</td>
-                      <td>{new Date(product.startTime).toLocaleString()}</td>
+                      <td>{formatDate(product.startTime)}</td>
                     </tr>
 
                     {selectedProductId === product.id && gameDetails && (
