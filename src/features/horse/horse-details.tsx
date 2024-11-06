@@ -1,22 +1,38 @@
+// src/components/HorseDetails.tsx
+
 import React from "react";
-import { Horse } from "../../types/horse";
-import "./horse-details.module.css";
+import { Start } from "../../types/game";
 
 interface HorseDetailsProps {
-  horse: Horse;
+  starts: Start[];
 }
 
-export const HorseDetails: React.FC<HorseDetailsProps> = ({ horse }) => {
+export const HorseDetails: React.FC<HorseDetailsProps> = ({ starts }) => {
   return (
-    <div className="horse-details">
-      <h2 className="title">Horse Details</h2>
-      <p className="detail">
-        <strong>Trainer:</strong> {horse.trainer.firstName}{" "}
-        {horse.trainer.lastName}
-      </p>
-      <p className="detail">
-        <strong>Father:</strong> {horse.father}
-      </p>
-    </div>
+    <tr>
+      <td colSpan={3}>
+        <table>
+          <thead>
+            <tr>
+              <th>Start Number</th>
+              <th>Horse Name</th>
+              <th>Driver Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {starts.map((start) => (
+              <tr key={start.id}>
+                <td>{start.number}</td>
+                <td>{start.horse?.name || "N/A"}</td>
+                <td>
+                  {start.driver?.firstName || "N/A"}
+                  {start.driver?.lastName || "N/A"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </td>
+    </tr>
   );
 };

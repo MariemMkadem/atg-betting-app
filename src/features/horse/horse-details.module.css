@@ -1,39 +1,20 @@
-.horse-details {
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  margin: 20px auto;
-  font-family: "Arial", sans-serif;
+.nestedTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
 }
 
-.title {
-  font-size: 1.6rem;
-  color: #343a40;
-  text-align: center;
-  margin-bottom: 15px;
-  font-weight: 600;
+.nestedTable th,
+.nestedTable td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
 }
 
-.detail {
-  font-size: 1.1rem;
-  color: #495057;
-  margin: 10px 0;
-  line-height: 1.6;
+.nestedTable th {
+  background-color: #f4f4f4;
 }
 
-strong {
-  color: #007bff;
-}
-
-.horse-details p {
-  margin: 8px 0;
-}
-
-.horse-details p:hover {
+.nestedTable tr:hover {
   background-color: #f1f1f1;
-  padding-left: 10px;
-  border-left: 3px solid #007bff;
-  transition: all 0.3s ease-in-out;
 }

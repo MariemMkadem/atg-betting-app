@@ -1,5 +1,10 @@
 import { Track } from "./product";
 
+export interface Trainer {
+  id: number;
+  firstName: string;
+  lastName: string;
+}
 export interface Driver {
   id: number;
   firstName: string;
@@ -9,6 +14,7 @@ export interface Driver {
 export interface Horse {
   id: number;
   name: string;
+  trainer: Trainer;
 }
 
 export interface Start {
@@ -19,7 +25,7 @@ export interface Start {
 }
 
 export interface Race {
-  id: number;
+  id: string;
   number: number;
   name: string;
   startTime: string;
