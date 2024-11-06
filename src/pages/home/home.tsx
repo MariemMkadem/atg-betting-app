@@ -5,25 +5,25 @@ import { RaceList } from "../../features/race";
 import { Product } from "../../types/product";
 import { Game } from "../../types/game";
 import formatDate from "../../helpers/formatDate";
+import { useBettingContext } from "../../context/BettingContext";
 
 import styles from "./home.module.css";
 
 const Home: React.FC = () => {
-  const [betType, setBetType] = useState<string>("");
+  const { selectedBetType } = useBettingContext();
   const [products, setProducts] = useState<Product[]>([]);
   const [gameDetails, setGameDetails] = useState<Game | null>(null);
   const [selectedProductId, setSelectedProductId] = useState<string | null>(
     null
   );
   const [error, setError] = useState<string | null>(null);
-
   const betTypes = ["V75", "V86", "GS75"];
 
   useEffect(() => {
     const fetchResults = async () => {
-      if (!betType) return;
+      if (!selectedBetType) return;
       try {
-        const { data } = await getBetTypeResults(betType);
+        const { data } = await getBetTypeResults(selectedBetType);
         setProducts(data.results);
         setError(null);
       } catch (error) {
@@ -31,7 +31,7 @@ const Home: React.FC = () => {
       }
     };
     fetchResults();
-  }, [betType]);
+  }, [selectedBetType]);
 
   const handleProductClick = async (id: string) => {
     if (selectedProductId === id) {
@@ -56,7 +56,7 @@ const Home: React.FC = () => {
       </header>
       <main className={styles.mainContent}>
         <section className={styles.betTypeSection}>
-          <BetTypeSelector onSelect={setBetType} betTypes={betTypes} />
+          <BetTypeSelector betTypes={betTypes} />
         </section>
         <section className={styles.raceSection}>
           {error && <div className={styles.error}>{error}</div>}
