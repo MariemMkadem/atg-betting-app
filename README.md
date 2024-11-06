@@ -1,46 +1,75 @@
-# Getting Started with Create React App
+# ATG Betting App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a Horse Betting App that allows users to select bet types and view the latest results of horse races, including details about each race and the horses participating.
 
-## Available Scripts
+Viewing Race Details
+In this application, each race entry in the list is clickable. To view more details about a specific race, simply click on the row.
 
-In the project directory, you can run:
+When a row is clicked, it will expand to show additional information related to that race, such as the race number, horse names, driver names, and other relevant details. Click the row again to collapse the details.
 
-### `npm start`
+This feature allows you to easily browse and focus on specific
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Project Structure
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The project has the following main structure:
 
-### `npm test`
+- `src/constants`: Holds constant values used across the application.
+- `src/features`: Contains features like `bet-type`, `horse`, and `race`.
+- `src/helpers`: Utility functions, e.g., for formatting dates.
+- `src/pages/home`: The main page of the app, displaying the home screen.
+- `src/services`: API calls to retrieve data from backend services.
+- `src/types`: Type definitions for data models like `bet-type`, `game`, and `product`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Prerequisites
 
-### `npm run build`
+Ensure you have the following installed on your machine:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [Node.js](https://nodejs.org/) (v14 or above)
+- [npm](https://www.npmjs.com/) (v6 or above) or [yarn](https://yarnpkg.com/) (v1.22 or above)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To get a local copy of the project up and running, follow these steps.
 
-### `npm run eject`
+### Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. **Clone the repository:**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   git clone https://github.com/MariemMkadem/atg-betting-app
+   cd atg-betting-app
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2. **Install Dependencies:**
 
-## Learn More
+   ```bash
+       npm install
+       or
+       yarn install
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. **Run the Application:**
+   ```bash
+      npm start
+      or
+      yarn start
+   ```
+
+### Code Linting
+
+This project uses ESLint to ensure code quality and consistency. Linting helps catch errors and enforce coding standards across the project.
+
+1. **Running the Linter:**
+
+   ```bash
+      npm run lint
+
+   ```
+
+2. **Fixing Linting Issues:**
+
+   ```bash
+       npm run lint:fix
+   ```
